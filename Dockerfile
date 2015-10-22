@@ -1,6 +1,6 @@
 FROM cosmiqo/emonbase:latest
 
-MAINTAINER Lam Kee Wei <kee.wei@cosmiqo.com>
+MAINTAINER snoopy
 RUN rm -rf /var/www/html
 RUN git clone https://github.com/emoncms/emoncms.git /var/www/html
 
