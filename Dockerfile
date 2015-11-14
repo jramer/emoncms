@@ -1,15 +1,20 @@
 FROM cosmiqo/emonbase:latest
 
-MAINTAINER snoopy
+MAINTAINER jramer
 RUN rm -rf /var/www/html
 RUN git clone https://github.com/emoncms/emoncms.git /var/www/html
+RUN git clone https://github.com/emoncms/event.git /var/www/html/Modules/event
+RUN git clone https://github.com/emoncms/app.git /var/www/html/Modules/app
+RUN git clone https://github.com/emoncms/usefulscripts.git /usr/local/bin/emoncms_usefulscripts
+
+RUN apt-get -y update && apt-get install -y php5-mcrypt php5-curl
 
 # Add db setup script
 ADD run.sh /run.sh
 ADD db.sh /db.sh
 RUN chmod 755 /*.sh
 
-# Add MySQL config 
+# Add MySQL config
 ADD my.cnf /etc/mysql/conf.d/my.cnf
 
 # Add supervisord configuration file
